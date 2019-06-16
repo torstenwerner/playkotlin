@@ -1,0 +1,3 @@
+= A playground for kotlin
+
+This is just a sample project for kotlin code with junit 5 and assertj and the gradle kotlin dsl.
