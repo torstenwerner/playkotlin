@@ -1,3 +1,6 @@
+/**
+ * various build related constants such as version numbers
+ */
 object Constants {
     const val kotlinVersion = "1.3.31"
     const val projectVersion = "0.2"
