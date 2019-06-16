@@ -1,9 +1,9 @@
 plugins {
-    kotlin("jvm") version "1.3.31"
+    kotlin("jvm") version Constants.kotlinVersion
 }
 
 description = "a playground for kotlin"
-version = "0.2"
+version = Constants.projectVersion
 
 repositories {
     jcenter()
@@ -14,6 +14,6 @@ dependencies {
 }
 
 tasks.wrapper {
-    gradleVersion = "5.4.1"
+    gradleVersion = Constants.gradleVersion
     distributionType = Wrapper.DistributionType.ALL
 }
