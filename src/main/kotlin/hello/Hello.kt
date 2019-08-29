@@ -19,4 +19,9 @@ fun main() {
         put("lastName", "Wurst")
     }}"
     println(embeddedMapSample)
+
+    for (x in 'a'..'f') {
+        println(x)
+    }
+    println("Java".."Scala")
 }
