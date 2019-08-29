@@ -1,13 +1,12 @@
 package hello
 
 fun isValidIdentifier(s: String): Boolean {
-    fun isEmptyString(s: String) = s.length == 0
-    fun isValidFirstCharacter(c: Char) = c == '_' || c in 'A'..'z'
-    fun hasValidFirstCharacter(s: String) = isValidFirstCharacter(s.get(0))
-    fun isValidExtraCharacter(c: Char) = isValidFirstCharacter(c) || c in '0'..'9'
-    fun hasOnlyValidExtraCharacters(s: String) = s.substring(1).all { isValidExtraCharacter(it) }
+    fun Char.isValidFirst() = this == '_' || this in 'A'..'z'
+    fun String.hasValidFirstCharacter() = get(0).isValidFirst()
+    fun Char.isValidExtraCharacter() = isValidFirst() || this in '0'..'9'
+    fun String.hasOnlyValidExtraCharacters() = substring(1).all(Char::isValidExtraCharacter)
 
-    return !isEmptyString(s) && hasValidFirstCharacter(s) && hasOnlyValidExtraCharacters(s)
+    return !s.isEmpty() && s.hasValidFirstCharacter() && s.hasOnlyValidExtraCharacters()
 }
 
 fun main(args: Array<String>) {
