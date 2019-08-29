@@ -6,8 +6,17 @@ val lazy: String by lazy {
     "foo" + "bar"
 }
 
-fun main(args: Array<String>) {
-    val person = Person("Hans", "Wurst")
-    println("Hello " + person)
+fun main() {
+    val person = Person(firstName = "Hans", lastName = "Wurst")
+    println("Hello $person!")
+
     println(lazy)
+
+    println(null.toString())
+
+    val embeddedMapSample = "map: ${HashMap<String, String>().apply {
+        put("firstName", "Hans")
+        put("lastName", "Wurst")
+    }}"
+    println(embeddedMapSample)
 }
