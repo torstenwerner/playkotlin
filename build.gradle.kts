@@ -11,9 +11,14 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Constants.coroutinesVersion}")
+    implementation("com.fasterxml.jackson.core:jackson-databind:${Constants.jacksonVersion}")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${Constants.jacksonVersion}")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${Constants.jacksonVersion}")
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:${Constants.junitVersion}")
     testImplementation("org.assertj:assertj-core:${Constants.assertjVersion}")
+
     testRuntime("org.junit.jupiter:junit-jupiter-engine:${Constants.junitVersion}")
 }
 

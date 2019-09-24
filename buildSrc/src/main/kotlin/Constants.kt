@@ -7,4 +7,6 @@ object Constants {
     const val gradleVersion = "5.4.1"
     const val junitVersion = "5.4.2"
     const val assertjVersion = "3.12.2"
+    const val coroutinesVersion = "1.3.0"
+    const val jacksonVersion = "2.9.10"
 }
