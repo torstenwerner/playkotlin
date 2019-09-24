@@ -18,11 +18,8 @@ fun main() {
         job("test")
     }
 
-    val mapper = ObjectMapper(YAMLFactory())
-            .registerModule(KotlinModule())
-            .setSerializationInclusion(NON_EMPTY)
-    configuration.serialize {
-        mapper.writeValue(System.out, it)
+    configuration.serialize { mapper, data ->
+        mapper.writeValue(System.out, data)
     }
 }
 
@@ -34,8 +31,17 @@ data class Gitlab(val jobs: MutableMap<String, Job> = mutableMapOf()) {
         val job = Job(name).apply(configLambda)
         jobs[name] = job
     }
-    fun serialize(consumer: (Any) -> Unit) {
-        consumer(jobs)
+
+    fun serialize(consumer: (mapper: ObjectMapper, data: Any) -> Unit) {
+        consumer(mapper, jobs)
+    }
+
+    companion object {
+        val mapper by lazy {
+            ObjectMapper(YAMLFactory())
+                    .registerModule(KotlinModule())
+                    .setSerializationInclusion(NON_EMPTY)
+        }
     }
 }
 
