@@ -14,8 +14,13 @@ fun main() {
         }
         job("build") {
             script("./gradlew clean build")
+            image("openjdk")
         }
-        job("test")
+        job("test") {
+            image("ubuntu") {
+                entrypoint = "/bin/bash"
+            }
+        }
     }
 
     println(configuration.toYaml())
@@ -41,9 +46,15 @@ data class Gitlab(val jobs: MutableMap<String, Job> = mutableMapOf()) {
     }
 }
 
-data class Job(@JsonIgnore val name: String, val script: MutableList<String> = mutableListOf()) {
+data class Job(@JsonIgnore val name: String, val script: MutableList<String> = mutableListOf(), var image: Image? = null) {
 
     fun script(script: String) {
         this.script.add(script)
     }
+
+    fun image(name: String, configLambda: Image.() -> Unit = {}) {
+        this.image = Image(name).apply(configLambda)
+    }
 }
+
+data class Image(val name: String, var entrypoint: String? = null)
