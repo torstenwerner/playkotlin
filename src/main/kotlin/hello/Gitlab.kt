@@ -18,9 +18,7 @@ fun main() {
         job("test")
     }
 
-    configuration.serialize { mapper, data ->
-        mapper.writeValue(System.out, data)
-    }
+    println(configuration.toYaml())
 }
 
 fun gitlab(configLambda: Gitlab.() -> Unit): Gitlab = Gitlab().apply(configLambda)
@@ -32,9 +30,7 @@ data class Gitlab(val jobs: MutableMap<String, Job> = mutableMapOf()) {
         jobs[name] = job
     }
 
-    fun serialize(consumer: (mapper: ObjectMapper, data: Any) -> Unit) {
-        consumer(mapper, jobs)
-    }
+    fun toYaml(): String = mapper.writeValueAsString(jobs)
 
     companion object {
         val mapper by lazy {
